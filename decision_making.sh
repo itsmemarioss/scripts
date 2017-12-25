@@ -3,9 +3,16 @@
 filename=${1:?Please enter the file name}
 count=${2:-5} #if not typed by the user use 5 
 
-if ls $filename > /dev/null 2>&1 && cat /etc/shadow 2>/dev/null; then
+#file exists and is not empty
+if [ -s $filename ]; then
 	sort -n $filename | tail -$count
 else
-	echo "Sorry, only root can do this"
+	echo "Please, enter a valid and non empty file"
 	exit 1
 fi
+
+# -n String is not null
+# -z string is null or empty
+# [ "test" = "test" ] && echo "correct"
+# [[ "test" < "uest" ]] && echo "correct"
+# ![ -z "hello" ] && echo "correct"
