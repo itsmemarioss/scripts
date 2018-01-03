@@ -1,0 +1,3 @@
+10	www.google.com
+90	www.g1.globo.com
+88	www.abc.com

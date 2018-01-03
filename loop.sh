@@ -5,7 +5,13 @@ for user in $(cat /etc/passwd); do
 	echo "Username:" $username "Home directory:" $home
 done
 
+count=5
 # $@ i will iterate over arguments passed to the script
-for i; do
-	echo $i
+for f in "$@"; do
+	if ! [ -s $f ]; then
+		echo "$f is an invalid file or is empty"
+		exit 1
+	fi
 done
+container=$(cat "$@")
+echo "$container" | sort -n | tail -$count
