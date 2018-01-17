@@ -1,3 +1,7 @@
 10	www.google.com
 90	www.g1.globo.com
 88	www.abc.com
+45	www.voa.com
+78	www.bbc.co.uk
+65	www.outrosite.com
+
