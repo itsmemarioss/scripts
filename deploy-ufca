@@ -1,5 +1,7 @@
 #!/bin/bash
-# Usage
+# Usage: id_rsa.pub deve ser copiado para authorized_hosts no servidor, para evitar que seja necessário digitar a senha.
+# deploy-ufca /path/projeto.ear <servidor> <inst jboss>
+# caso não seja informado o servidor e a instância será usado os valores no arquivo.
 # Autor Mário
 
 ear=${1:?"Arquivo para deploy não informado"}
@@ -17,10 +19,10 @@ echo "realizando backup do ear..."
 
 if [ ! -d "$backup" ] 
 then
-  mkdir $backup && cd $backup
+  mkdir $backup
 fi
 
-scp -r $user@$server:$folder/* ./
+scp -r $user@$server:$folder/* $backup
 
 # stop service jboss, clean work e temp
 echo "parando instância $inst ..."
@@ -33,7 +35,7 @@ echo "realizando migration..."
 # substituir ear
 echo "uppando novo ear para $inst ..."
 # copy $ear to folder
-# scp $ear $user@$server:$folder
+scp $ear $user@$server:$folder
 
 # start service jboss
 echo "iniciando instância $inst ..."
